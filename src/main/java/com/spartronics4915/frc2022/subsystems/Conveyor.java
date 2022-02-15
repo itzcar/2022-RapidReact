@@ -1,18 +1,23 @@
 package com.spartronics4915.frc2022.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import com.spartronics4915.frc2022.Constants;
+import static com.spartronics4915.frc2022.Constants.Conveyor.*;
 import com.spartronics4915.lib.subsystems.SpartronicsSubsystem;
 
-import com.spartronics4915.lib.subsystems.SpartronicsSubsystem;
+import edu.wpi.first.wpilibj.DigitalInput;
+
+
 
 /**
- * Detailed description of Conveyer.
+ * Detailed description of Conveyor.
  */
 public class Conveyor extends SpartronicsSubsystem
+
 {
     // The subsystem's hardware is defined here...
     private CANSparkMax mMotor;
+    private DigitalInput mTopBeamBreaker; 
+    private DigitalInput mBottomBeamBreaker; 
 
     /** Creates a new Conveyer. */
     public Conveyor()
@@ -21,7 +26,9 @@ public class Conveyor extends SpartronicsSubsystem
         try
         {
             // ...and constructed here.
-            mMotor = new CANSparkMax(Constants.kTestMotorId,MotorType.kBrushless);
+            mMotor = new CANSparkMax(kSparkMaxId, MotorType.kBrushless);
+            mTopBeamBreaker = new DigitalInput(kTopBeamBreakerId);
+            mBottomBeamBreaker = new DigitalInput(kBottomBeamBreakerId);
         }
         catch (Exception exception)
         {

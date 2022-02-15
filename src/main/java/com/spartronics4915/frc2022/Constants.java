@@ -56,8 +56,9 @@ public final class Constants
         public static final double kLowRPS = 40.0;
     }
     public static class Conveyor {
-    
         public static final int kSparkMaxId = 1;
+        public static final int kTopBeamBreakerId = -1;
+        public static final int kBottomBeamBreakerId = -1;
         public static final double kP = 1;
         public static final double kD = 1;
     }
