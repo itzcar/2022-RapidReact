@@ -15,7 +15,8 @@ public class Conveyor extends SpartronicsSubsystem
 
 {
     // The subsystem's hardware is defined here...
-    private CANSparkMax mMotor;
+    private CANSparkMax mTopMotor;
+    private CANSparkMax mBottomMotor;
     private DigitalInput mTopBeamBreaker; 
     private DigitalInput mBottomBeamBreaker; 
 
@@ -26,7 +27,8 @@ public class Conveyor extends SpartronicsSubsystem
         try
         {
             // ...and constructed here.
-            mMotor = new CANSparkMax(kSparkMaxId, MotorType.kBrushless);
+            mTopMotor = new CANSparkMax(kTopSparkMaxId, MotorType.kBrushless);
+            mBottomMotor = new CANSparkMax(kBottomSparkMaxId, MotorType.kBrushless);
             mTopBeamBreaker = new DigitalInput(kTopBeamBreakerId);
             mBottomBeamBreaker = new DigitalInput(kBottomBeamBreakerId);
         }
@@ -39,19 +41,30 @@ public class Conveyor extends SpartronicsSubsystem
     }
 
     // Subsystem methods - actions the robot can take - should be placed here.
-public void setSpeed(double speed) {
-        mMotor.set(speed);
+    public void setSpeed(double speed) {
+        mTopMotor.set(speed);
         logInfo("running");
     }
 
-    public void startConveyor(){
-        mMotor.set(0.3);
-        logInfo("running");
+    public void startTopConveyor(){
+        mTopMotor.set(0.3);
+        logInfo("Top running");
     }
 
-    public void stopConveyor() {
-        mMotor.set(0);
-        logInfo("stopped");}
+    public void stopTopConveyor() {
+        mTopMotor.set(0);
+        logInfo("Top stopped");
+    }
+
+    public void startBottomConveyor(){
+        mBottomMotor.set(0.3);
+        logInfo("Bottom running");
+    }
+
+    public void stopBottomConveyor() {
+        mBottomMotor.set(0);
+        logInfo("Bottom stopped");
+    }
     /** This method will be called once per scheduler run. */
     @Override
     public void periodic() {}
